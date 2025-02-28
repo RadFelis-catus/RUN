@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 public class MainController : MonoBehaviour
 {
     Animator animator;
@@ -10,11 +11,16 @@ public class MainController : MonoBehaviour
     float horizontal;
     float vertical;
     public float speed = 3.0f;
+    public int maxHealth = 3;
+    public int health { get { return currentHealth; } }
+    public AudioClip backSound;
+    int currentHealth;
+    AudioSource audioSource;
 
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-
+        currentHealth = maxHealth;
 
     }
 
@@ -29,6 +35,14 @@ public class MainController : MonoBehaviour
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
         }
+
+    }
+    public void PlaySound(AudioClip clip)
+
+    {
+        if (clip == null)
+            Debug.Log("psnull");
+        audioSource.PlayOneShot(clip);
 
     }
 
