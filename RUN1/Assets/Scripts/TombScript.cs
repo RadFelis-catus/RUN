@@ -12,7 +12,7 @@ public class TombScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class TombScript : MonoBehaviour
     void Launch()
 
     {
-
+        Debug.Log("Instantiated");
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
 
@@ -31,9 +31,9 @@ public class TombScript : MonoBehaviour
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
 
-        projectile.Launch(lookDirection, 300);
+        projectile.Launch(-lookDirection, 300);
 
-
+        
 
 
    
