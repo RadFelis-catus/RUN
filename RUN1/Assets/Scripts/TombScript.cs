@@ -7,6 +7,8 @@ public class TombScript : MonoBehaviour
     
 {
     public GameObject projectilePrefab;
+    public float fireDelay = 2f;
+    private float timeSinceLastShot = 0f;
     Vector2 lookDirection = new Vector2(1, 0);
     Rigidbody2D rigidbody2d;
     // Start is called before the first frame update
@@ -18,7 +20,13 @@ public class TombScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeSinceLastShot += Time.deltaTime;
+        if(timeSinceLastShot>= fireDelay)
+        {
         Launch();
+            timeSinceLastShot = 0f;
+        }
+        
     }
     void Launch()
 
